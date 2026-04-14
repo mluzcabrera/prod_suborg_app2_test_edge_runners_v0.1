@@ -4,7 +4,7 @@ name: My workflow Simple test
 on:
   workflow_dispatch:
     inputs:
-      par1:
+      manifest:
         type: string
         default: mlcb_input_par
 jobs:
@@ -16,7 +16,7 @@ jobs:
         id: hello-1
         run: |-
           echo "Hello world! I'm $(whoami) on $(hostname)"
-          echo "Inputs context: ${{ inputs.par1 }}"
+          echo "Inputs context: ${{ inputs.manifest }}"
           echo "Vars context: ${{ vars.mlcbUserName }}"
           echo "CloudBees context: ${{ cloudbees.version }}"
           echo "test output" > $CLOUDBEES_OUTPUTS/hello
@@ -28,7 +28,7 @@ jobs:
     with:
       script: |
         echo "Hello world! I'm $(whoami) on $(hostname)"
-        echo "Inputs context: ${{ inputs.par1 }}"
+        echo "Inputs context: ${{ inputs.manifest }}"
         echo "Vars context: ${{ vars.mlcbUserName }}"
         echo "CloudBees context: ${{ cloudbees.version }}"
         echo "Job output access: ${{ needs.normal.outputs.hello }}"
